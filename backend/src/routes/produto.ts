@@ -6,12 +6,6 @@ const router: Router = express.Router();
 const people: object[] = [];
 
 
-// router
-//     .post('/usuarios', (req: Request, res: Response) => {
-//         const { nome, sobrenome } = req.body
-//         res.status(200).send(`${people.push(req.body)}`);
-//     })
-
 router.post('/', async (req: Request, res: Response) => {
     const { name, preco, estoque } = req.body;
 
@@ -24,11 +18,6 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
-// router
-//     .get('/usuarios', (req: Request, res: Response) => {
-//         res.status(200).send(`${people}`);
-//     })
-
 router.get('/', async (req: Request, res: Response) => {
     try {
         const produtos = await Produto.find();
@@ -37,45 +26,6 @@ router.get('/', async (req: Request, res: Response) => {
         res.status(400).json({ message: 'Erro ao buscar produtos', error });
     }
 });
-
-// router.get('/people', async (req: Request, res: Response) => {
-//     try {
-//         const people = await Cliente.find();
-//         res.status(200).json(people);
-//     } catch (error) {
-//         res.status(400).json({ message: 'Erro ao buscar pessoas', error });
-//     }
-// });
-
-
-// router.get('/:id/orders', async (req: Request, res: Response) => {
-//     const { id } = req.params;
-
-//     try {
-//         const person = await Cliente.findById(id);
-//         if (!person) {
-//             res.status(404).json({ message: 'Cliente não encontrado' });
-//         }
-//         res.status(200).json(person);
-//     } catch (error) {
-//         res.status(400).json({ message: 'Erro ao encontrar cliente', error });
-//     }
-// });
-
-// router.put('/person/:id', async (req: Request, res: Response) => {
-//     const { id } = req.params;
-//     const { name, age } = req.body;
-
-//     try {
-//         const person = await Cliente.findByIdAndUpdate(id, { name, age }, { new: true });
-//         if (!person) {
-//             res.status(404).json({ message: 'Pessoa não encontrada' });
-//         }
-//         res.status(200).json(person);
-//     } catch (error) {
-//         res.status(400).json({ message: 'Erro ao atualizar pessoa', error });
-//     }
-// });
 
 router.delete('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -102,9 +52,5 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
 });
 
-//     .delete('/deletar/:id', (req: Request, res: Response) => {
-//         const { id } = req.params;
-//         res.status(200).send(`Pessoa com o id: ${id} foi deletada `)
-//     })
 
 export default router;
